@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import db from "./firebase";
+import fire from "./firebase";
 import firebase from 'firebase';
 import Main from './pages/Main';
 import Home from './pages/Home';
@@ -62,7 +62,7 @@ export default function App() {
        */}
       <Router>
         <Route path="/" exact render={(props) => <Main />} />
-        <Route path="/main" exact render={(props) => <Home />} />
+        <Route path="/home" exact render={(props) => <Home />} />
       </Router>
     </div>
   )

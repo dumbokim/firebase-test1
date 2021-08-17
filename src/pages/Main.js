@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AddAuth from '../components/AddAuth';
 import Login from '../components/Login';
-import Home from './Home';
 
 export default function Main() {
   return (

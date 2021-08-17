@@ -11,7 +11,7 @@ export default function Login() {
       .then((userCredential) => {
         console.log(userCredential);
         console.log('로그인이 완료되었습니다.');
-        document.location.href = '/main'
+        document.location.href = '/home'
       }).catch((err) => {
         let errCode = err.code;
         let errMsg = err.message;
