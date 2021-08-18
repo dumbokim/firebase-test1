@@ -1,23 +1,33 @@
 import React, { useState } from 'react'
 import firebase from 'firebase';
+import { useHistory } from 'react-router-dom';
 
 export default function Login() {
 
   const [inputId, setInputId] = useState('');
   const [inputPwd, setInputPwd] = useState('');
 
+  const history = useHistory()
   const loginBtn = () => {
     firebase.auth().signInWithEmailAndPassword(inputId, inputPwd)
       .then((userCredential) => {
         console.log(userCredential);
         console.log('로그인이 완료되었습니다.');
-        document.location.href = '/home'
+        firebase
+          .auth()
+          .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+          .then(() => {
+            const provider = userCredential.user
+            firebase.auth().onAuthStateChanged((user) => {
+              if (user) history.push("/home");
+        })
       }).catch((err) => {
         let errCode = err.code;
         let errMsg = err.message;
         console.log(errCode);
         console.log(errMsg);
       })
+    })
   }
 
   return (
